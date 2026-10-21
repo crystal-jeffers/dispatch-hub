@@ -41,12 +41,99 @@ About one to two minutes. If you don't see it, refresh the page. If it still loo
 
 Nothing is ever lost. Every saved version of every file is kept. Open the file on GitHub and click History to see older versions. If you're not sure how to fix it, tell the hub owner which page you changed.
 
+## Accounts and access
+
+Every editor needs their own GitHub account. Readers don't need one, because the site is public.
+
+### Adding a new editor (hub owner)
+
+1. Ask the person to create a free GitHub account and send you their username.
+2. On GitHub, open the dispatch-hub repository. Click Settings, then Collaborators, then Add people.
+3. Type their username, pick them from the list, and click Add.
+4. They get an email invite. It expires after 7 days, so ask them to accept it soon.
+5. Send them this page, and ask them to set up the two steps below (private email and two-factor sign-in).
+
+> Note: Every collaborator can edit every page. There's no view-only or single-page level, so only invite people who will edit.
+
+### Removing an editor (hub owner)
+
+1. Open Settings, then Collaborators.
+2. Find the person and click Remove.
+
+Do this the same day someone leaves the team or stops editing. Their past changes stay in the history, with their name on them.
+
+### Why everyone needs their own login
+
+- Every save is stamped with who made it. A shared login makes every change look like the same person, so nobody can tell who to ask about a mistake.
+- The failed-check email goes to the account that saved. With a shared login, nobody knows it's theirs.
+- Removing one person would mean changing a password that everyone knows.
+- GitHub's terms allow one person per account. A shared account can be locked or suspended, which locks everyone out at once.
+
+### Keep your email address private (each editor, once)
+
+Every save is also stamped with an email address, and anyone can see it in the history. Turn this on before your first edit:
+
+1. Click your profile picture in the top right, then Settings, then Emails.
+2. Tick Keep my email addresses private.
+3. Tick Block command line pushes that expose my email.
+
+GitHub then uses a private stand-in address on your saves instead of your real one.
+
+### Two-factor sign-in (optional, recommended)
+
+Your account can change a public site, so a password alone is one leak away from trouble. Two-factor sign-in adds a code from your phone. GitHub may ask you to turn it on anyway.
+
+1. Install a free authenticator app on your phone, like Microsoft Authenticator or Google Authenticator.
+2. On GitHub, click your profile picture, then Settings, then Password and authentication.
+3. Click Enable two-factor authentication and choose the authenticator app option.
+4. Scan the code on screen with the app, then type the 6-digit code it shows.
+5. Download the recovery codes and keep them somewhere safe, like a password manager. Never put them on this site. They're how you get back in if you lose your phone.
+
 ## How to edit a page
 
 1. Open the page on the site and click Edit this page, under the title.
 2. Sign in to GitHub if asked.
 3. Make your changes. Click the Preview tab to check them.
 4. Click Commit changes, then Commit changes again in the box that opens.
+
+## When a save doesn't go live
+
+Every save runs a check before it publishes. It takes about one to two minutes.
+
+- **Passes:** the site publishes on its own.
+- **Finds a problem:** nothing publishes. The live site keeps showing the last good version, so readers never see a broken page.
+
+### What the email looks like
+
+If the check finds a problem, GitHub emails the person who saved. It comes from GitHub, and the subject reads something like "Run failed: Check and publish - main." The wording is GitHub's own, so it sounds more alarming than it is. You'll also see a red X next to your save in the file's History.
+
+### How to fix it
+
+1. In the email, click View workflow run. Or open the repository on GitHub, click Actions, and open the newest run with a red X.
+2. Scroll down to "The site was NOT published." The table there lists the file, the line, and what to fix.
+3. Open that file, click the pencil to edit, and fix the line.
+4. Commit. The check runs again on its own. A green check means the site is live within a minute.
+
+### Common messages
+
+| The table says | What to do |
+| --- | --- |
+| The menu links to a page that doesn't exist | Check the spelling in `nav.md`, or add the page |
+| This links to a page that doesn't exist | Check the link name in parentheses against the page's file name |
+| The image can't be found | Check the file name in `assets/img`. Capital letters count. |
+| This image comes from another website | Download the picture and upload it to `assets/img` instead |
+| This looks like an email address or phone number | Remove it and link to SharePoint instead |
+| Pages can't contain code | Take out the code. Pages only need plain text and the symbols on this page. |
+
+A "Worth a look" table may also appear, for example for an image over 600 KB. Those notes don't stop publishing.
+
+### Allowing a public business number or email
+
+The check blocks every email address and phone number, because personal contact details must never go on this public site. If a number truly is public, like a vendor's published customer service line, ask the hub owner first. Then add it on its own line in `.github/checks/allowed.txt` and save. The check runs again on its own.
+
+### Still stuck
+
+Open the file you changed, click History, and copy the text from the last version that worked. Paste it back in and commit. Then tell the hub owner which page you changed.
 
 ## Titles and badges
 
